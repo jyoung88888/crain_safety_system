@@ -1,0 +1,1781 @@
+{
+	"info": {
+		"_postman_id": "9a21b34d-26cd-46d2-be13-e3318609288f",
+		"name": "REST API CCTV 관리",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17000597"
+	},
+	"item": [
+		{
+			"name": "cctv ai 프로세스 구동 관련",
+			"item": [
+				{
+					"name": "cctv ai 프로세스 실행",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"in_url\": \"rtsp://210.99.70.120:1935/live/cctv010.stream\",\r\n    \"out_path\": \"out10\",\r\n    \"cctv_id\": \"out10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/process/run_ai_cctv",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"process",
+								"run_ai_cctv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cctv ai 프로세스 종료",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pid\": 3624465\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/process/terminate_process",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"process",
+								"terminate_process"
+							],
+							"query": [
+								{
+									"key": "pid",
+									"value": "\"36168\"",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/chk_pid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pid\":\"456364\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/process/chk_pid",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"process",
+								"chk_pid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "최종이미지 받기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/process/get_img/CAM0006",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"process",
+								"get_img",
+								"CAM0006"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "192.168.2.3:8088/cctv/process/get_file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"file_path\": \"./img/event/20241015_110913_CCAM0012_worker.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/process/get_file",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"process",
+								"get_file"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "서버 CRUD",
+			"item": [
+				{
+					"name": "서버 추가,수정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n    \"server_id\" : \"\",\r\n    \"server_name\": \"test\",\r\n    \"server_ip\": \"test\",\r\n    \"restapi_port\": \"8082\",\r\n    \"mediamtx_port\": \"8889\",\r\n    \"remark\": \"메인\",\r\n    \"userCd\": \"IJC_admin\",\r\n    \"__created__\": true\r\n    },\r\n    {\r\n    \"server_id\" : \"SI0001\",\r\n    \"server_name\": \"cctv_ser01\",\r\n    \"server_ip\": \"192.168.0.31\",\r\n    \"restapi_port\": \"8088\",\r\n    \"mediamtx_port\": \"8889\",\r\n    \"remark\": \"메인\",\r\n    \"userCd\": \"IGNS_esg_team\",\r\n    \"__created__\": false\r\n    }\r\n    \r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/server_crud/server",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"server_crud",
+								"server"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "서버 수정",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comp_id\" : \"C0011\",\r\n    \"server_name\": \"cctv_ser021\",\r\n    \"server_ip\": \"192.168.1.11\",\r\n    \"restapi_port\": \"80881\",\r\n    \"mediamtx_port\": \"88891\",\r\n    \"remark\": \"테스트1\",\r\n    \"updated_by\": \"adim1\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/server_crud/server/SI0004",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"server_crud",
+								"server",
+								"SI0004"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "전체 내용 읽어오기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/server_crud/servers/IGNS_esg_team",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"server_crud",
+								"servers",
+								"IGNS_esg_team"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "server_id로 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/server_crud/server/SI0001",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"server_crud",
+								"server",
+								"SI0001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "server_id에 해당하는 내용 석제",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n        \"SI0002\"\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/server_crud/server",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"server_crud",
+								"server"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CCTV CRUD",
+			"item": [
+				{
+					"name": "cctv 추가, 수정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"cctv_name\": \"cctv008\",\r\n        \"camera_desc\": \"물류창고 카메라8\",\r\n        \"server_id\": \"SI0001\",\r\n        \"rtsp_add\": \"rtsp://210.99.70.120:1935/live/cctv008.stream\",\r\n        \"pid\": \"\",\r\n        \"remark\":\"\",\r\n        \"userCd\": \"IGNS_esg_team\",\r\n        \"__created__\": true\r\n    },\r\n    {\r\n        \"cctv_name\": \"cctv007\",\r\n        \"camera_desc\": \"물류창고 카메라9\",\r\n        \"server_id\": \"SI0001\",\r\n        \"rtsp_add\": \"rtsp://210.99.70.120:1935/live/cctv009.stream\",\r\n        \"pid\": \"\",\r\n        \"remark\":\"\",\r\n        \"userCd\": \"IGNS_esg_team\",\r\n        \"__created__\": true\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/cctv_crud/cctv",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"cctv_crud",
+								"cctv"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cctv 수정",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comp_id\": \"C0011\",\r\n    \"cctv_name\": \"cctv0081\",\r\n    \"camera_desc\": \"물류창고 카메라1\",\r\n    \"server_id\": \"SI0001\",\r\n    \"rtsp_add\": \"rtsp://210.99.70.120:1935/live/cctv008.stream1\",\r\n    \"out_path\": \"cctv0081\",\r\n    \"pid\": \"\",\r\n    \"remark\":\"\",\r\n    \"updated_by\": \"admin1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/cctv_crud/cctv/CAM0002",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"cctv_crud",
+								"cctv",
+								"CAM0002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cctv_id에 해당하는 내용 읽기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/cctv_crud/cctv/CAM0015",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"cctv_crud",
+								"cctv",
+								"CAM0015"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "전체내용 읽어오기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/cctv_crud/cctvs/IGNS_esg_team",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"cctv_crud",
+								"cctvs",
+								"IGNS_esg_team"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cctv 삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    \"CAM0015\",\r\n    \"CAM0014\"\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/cctv_crud/cctv",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"cctv_crud",
+								"cctv"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cctv ai 원격구동 api",
+			"item": [
+				{
+					"name": "전체 프로세스 실행",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/remote/run_all",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"remote",
+								"run_all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cctv_id에 해당하는 프로세스 실행",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/remote/run_cctv/CAM0013",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"remote",
+								"run_cctv",
+								"CAM0013"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cctv_id에 해당하는 프로세스 종료",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/remote/stop_cctv/CAM0013",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"remote",
+								"stop_cctv",
+								"CAM0013"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "전체 프로세스 확인",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/remote/cctv_pid_chk",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"remote",
+								"cctv_pid_chk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "영상재생url받기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/remote/get_cctv_play_url/CAM0013",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"remote",
+								"get_cctv_play_url",
+								"CAM0013"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "사용자",
+			"item": [
+				{
+					"name": "사용자 추가",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"admin1\",\r\n    \"user_pw\": \"test\",\r\n    \"admin_chk\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/user_crud/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"user_crud",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "사용자 수정",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"admin\",\r\n    \"user_pw\": \"test1\",\r\n    \"admin_chk\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/user_crud/user/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"user_crud",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "사용자 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/user_crud/user/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"user_crud",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "전체내용 읽어오기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/user_crud/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"user_crud",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "사용자 삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/user_crud/user/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"user_crud",
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "로그인(Allow access / Inaccessible)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": \"admin\",\r\n    \"user_pw\": \"test1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/user_crud/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"user_crud",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "모니터링 프로파일",
+			"item": [
+				{
+					"name": "프로파일 추가, 수정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n    \"Profile_name\": \"B동\",\r\n    \"userCd\":\"IGNS_esg_team\",\r\n    \"__created__\": true\r\n    },\r\n    {\r\n    \"Profile_id\": \"CMG0001\",\r\n    \"Profile_name\": \"F동\",\r\n    \"userCd\":\"IGNS_esg_team\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/profile_crud/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"profile_crud",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "프로파일 수정",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comp_id\":\"C001\",\r\n    \"Profile_name\": \"B동-1\",\r\n    \"updated_by\":\"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/profile_crud/profile/CMG0002",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"profile_crud",
+								"profile",
+								"CMG0002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "프로파일 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/profile_crud/profile/CMG0001",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"profile_crud",
+								"profile",
+								"CMG0001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "프로파일 전체 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/profile_crud/profiles/C001_esg_team",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"profile_crud",
+								"profiles",
+								"C001_esg_team"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    \"CMG0004\"\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/profile_crud/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"profile_crud",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "모니터링 프로파일 상세",
+			"item": [
+				{
+					"name": "추가, 수정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"profile_id\": \"CMG0001\",\r\n        \"cctv_id\": \"CAM0008\",\r\n        \"w\": 15,\r\n        \"h\": 6,\r\n        \"x\": 25,\r\n        \"y\": 6,\r\n        \"i\": 1,\r\n        \"title\": \"2\",\r\n        \"userCd\": \"IGNS_esg_team\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/pro_detail_crud/pro_detail",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"pro_detail_crud",
+								"pro_detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "수정",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"cctv_id\": \"1\",\r\n        \"high\": \"1080\",\r\n        \"profile_id\": \"1\",\r\n        \"width\": \"1920\",\r\n        \"x\": \"0\",\r\n        \"y\": \"0\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/pro_detail_crud/pro_detail/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"pro_detail_crud",
+								"pro_detail",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/pro_detail_crud/pro_detail/CMG0001_1",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"pro_detail_crud",
+								"pro_detail",
+								"CMG0001_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "전체 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/pro_detail_crud/pro_details",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"pro_detail_crud",
+								"pro_details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    \"CMG0001_3\",\r\n    \"CMG0001_4\"\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/pro_detail_crud/pro_detail",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"pro_detail_crud",
+								"pro_detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "그룹조회(재생url 포함)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/pro_detail_crud/group_pro_detail/CMG0001",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"pro_detail_crud",
+								"group_pro_detail",
+								"CMG0001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MODEL 관리",
+			"item": [
+				{
+					"name": "추가, 수정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"model_nm\": \"Detection2\",\r\n        \"model_txt\": \"Detection2\",\r\n        \"userCd\": \"IGNS_esg_team\",\r\n        \"__created__\": true\r\n    },\r\n    {\r\n        \"model_nm\": \"Pose\",\r\n        \"model_txt\": \"Pose\",\r\n        \"userCd\": \"IGNS_esg_team\",\r\n        \"__created__\": false\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/model_crud/model",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"model_crud",
+								"model"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "수정",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"model_nm\": \"predict_work_progress3\",\r\n    \"model_txt\": \"작업진행율 예측4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/model_crud/model/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"model_crud",
+								"model",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/model_crud/model/Pose",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"model_crud",
+								"model",
+								"Pose"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "전체 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/model_crud/models",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"model_crud",
+								"models"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    \"Detection2\"\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/model_crud/model",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"model_crud",
+								"model"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ROI관리",
+			"item": [
+				{
+					"name": "수정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\r\n    \"cctv_id\": \"CAM0005\",\r\n    \"model_list\": [\r\n        {\r\n            \"userCd\": \"IGNS_esg_team\",\r\n            \"is_run\": false,\r\n            \"model_nm\": \"Detection\",\r\n            \"point_arr\": \"[[42,600],[372,199],[508,200],[555,377],[602,597],[326,600]]\"\r\n        },\r\n        {\r\n            \"userCd\": \"IGNS_esg_team\",\r\n            \"is_run\": false,\r\n            \"model_nm\": \"Pose\",\r\n            \"point_arr\": \"[]\"\r\n        }\r\n    ]\r\n}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/roi_crud/roi",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"roi_crud",
+								"roi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/roi_crud/roi/CAM0003_Detection",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"roi_crud",
+								"roi",
+								"CAM0003_Detection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "전체 조회",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/roi_crud/rois/IGNS_esg_team",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"roi_crud",
+								"rois",
+								"IGNS_esg_team"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    \"CAM0005_Detection\",\r\n    \"CAM0007_Detection\"\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/roi_crud/roi",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"roi_crud",
+								"roi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cctv 이미지 받기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/roi_crud/get_cctv_img/CAM0006",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"roi_crud",
+								"get_cctv_img",
+								"CAM0006"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "log",
+			"item": [
+				{
+					"name": "테스트용  동영상 받기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/log/get_test_video",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"log",
+								"get_test_video"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "192.168.2.3:8088/cctv/roi_crud/roi/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/roi_crud/rois",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"roi_crud",
+								"rois"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "수정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[ \r\n    {\r\n        \"event_time\": \"2024-10-15 10:19:08.000\",\r\n        \"cctv_id\" : \"CAM0012\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/ce/camera_event",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"ce",
+								"camera_event"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "조회",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cctv_id\": [\"CAM0013\"],\r\n  \"event_type\": [\"E001\"],\r\n  \"start_date\": \"2024.10.15\",\r\n  \"end_date\": \"2024.10.16\",\r\n  \"userCd\": \"IGNS_esg_team\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/ce/camera_events1",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"ce",
+								"camera_events1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "192.168.2.3:8088/cctv/ce/camera_events_by_group/CMG0001",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/ce/camera_events_by_group/CMG0001",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"ce",
+								"camera_events_by_group",
+								"CMG0001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "192.168.2.3:8088/cctv/ce/camera_events_get_file",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cctv_id\": \"CAM0012\",\r\n    \"file_path\":\"./img/event/20241015_110913_CCAM0012_worker.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/ce/camera_events_get_file",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"ce",
+								"camera_events_get_file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "192.168.2.3:8088/cctv/ce/camera_events_remark",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"cctv_id\": \"CAM0013\",\r\n            \"event_time\": \"2024.10.15 23:58:05\",\r\n            \"remark\": \"test\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/ce/camera_events_remark",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"ce",
+								"camera_events_remark"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "192.168.2.3:8088/cctv/ce/camera_events_by_group1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"profile_id\" : \"CMG0001\",\r\n    \"userCd\":\"IGNS_esg_team\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/ce/camera_events_by_group1",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"ce",
+								"camera_events_by_group1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "192.168.0.31:8088/cctv/remote/get_cctv_play_url/CAM0013",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "192.168.0.31:8088/cctv/remote/get_cctv_play_url/CAM0013",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"31"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"remote",
+								"get_cctv_play_url",
+								"CAM0013"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "192.168.0.31:8088/cctv/remote/run_all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "192.168.0.31:8088/cctv/remote/run_all",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"31"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"remote",
+								"run_all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{base_url}}:8088/cctv/ce/camera_events_get_file2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cctv_id\": \"CAM0011\",\r\n    \"file_path\":\"./img/event/test.mp4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/cctv/ce/camera_events_get_file2",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"cctv",
+								"ce",
+								"camera_events_get_file2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "grid",
+			"item": [
+				{
+					"name": "extend & shirink",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image_path\": \"KakaoTalk_20241115_175939274.jpg\",\r\n    \"use_click\": false,\r\n    \"click_coordinates\": [200, 150],\r\n    \"operations\": [\r\n        [\"up_extend\", 1],\r\n        [\"down_extend\", 1],\r\n        [\"left_extend\", 1],\r\n        [\"right_extend\", 1]\r\n        //[\"down_shrink\", 1]\r\n        //[\"left_shrink\", 1]\r\n        //[\"right_shrink\", 1]\r\n        ]\r\n}\r\n//{\r\n//    \"image_path\": \"KakaoTalk_20241115_175939274.jpg\",\r\n//    \"use_click\": true,\r\n//    \"click_coordinates\": [200, 150],\r\n//    \"operations\": [\r\n//         [\"up_extend\", 1],\r\n//        [\"down_extend\", 1],\r\n//        [\"left_extend\", 1],\r\n//        [\"right_extend\", 1]\r\n        //[\"down_shrink\", 1]\r\n        //[\"left_shrink\", 1]\r\n        //[\"right_shrink\", 1]\r\n //   ]\r\n//}\r\n//{\r\n//    \"image_path\": \"KakaoTalk_20241115_175939274.jpg\",\r\n//    \"use_click\": false,\r\n//    \"operations\": [\r\n//        [\"up_extend\", 1],\r\n//        [\"left_extend\", 1]\r\n//    ]\r\n//}\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/grid/grid_crud//process_grid?Content-Type=application/json",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"grid",
+								"grid_crud",
+								"",
+								"process_grid"
+							],
+							"query": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							]
+						},
+						"description": "extend를 초과한 shrink 호출시 value error 발생\n\nStartFragment\n\n//\\[\"up_extend\", 1\\]\n\n//\\[\"down_extend\", 1\\]\n\n//\\[\"left_extend\", 1\\]\n\n//\\[\"right_extend\", 1\\]\n\n//\\[\"up_shrink\", 1\\]\n\n//\\[\"down_shrink\", 1\\]\n\n//\\[\"left_shrink\", 1\\]\n\n//\\[\"right_shrink\", 1\\]\n\nEndFragment  \n한번에 여러번 호출하거나 한번씩 호출 가능."
+					},
+					"response": []
+				},
+				{
+					"name": "그리드 축 방향 지정",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image_path\": \"KakaoTalk_20241115_175939274.jpg\",\r\n    \"operations\": [\r\n        //[\"up_extend\", 1]\r\n        //[\"down_extend\", 1]\r\n        //[\"left_extend\", 1]\r\n        //[\"right_extend\", 1]\r\n        [\"up_shrink\", 5]\r\n        //[\"down_shrink\", 1]\r\n        //[\"left_shrink\", 1]\r\n        //[\"right_shrink\", 1]\r\n    ]\r\n}\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/grid/grid_crud//process_grid?Content-Type=application/json",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"grid",
+								"grid_crud",
+								"",
+								"process_grid"
+							],
+							"query": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							]
+						},
+						"description": "extend를 초과한 shrink 호출시 value error 발생\n\nStartFragment\n\n//\\[\"up_extend\", 1\\]\n\n//\\[\"down_extend\", 1\\]\n\n//\\[\"left_extend\", 1\\]\n\n//\\[\"right_extend\", 1\\]\n\n//\\[\"up_shrink\", 1\\]\n\n//\\[\"down_shrink\", 1\\]\n\n//\\[\"left_shrink\", 1\\]\n\n//\\[\"right_shrink\", 1\\]\n\nEndFragment  \n한번에 여러번 호출하거나 한번씩 호출 가능."
+					},
+					"response": []
+				},
+				{
+					"name": "reset_grid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image_path\": \"KakaoTalk_20241115_175939274.jpg\",\r\n    \"output_dir\": \"output\"\r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/grid/grid_crud/reset_grid?Content-Type=application/json",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"grid",
+								"grid_crud",
+								"reset_grid"
+							],
+							"query": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save_img",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image_path\": \"KakaoTalk_20241115_175939274.jpg\",\r\n    \"output_dir\": \"output\"\r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/grid/grid_crud/reset_grid?Content-Type=application/json",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"grid",
+								"grid_crud",
+								"reset_grid"
+							],
+							"query": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "특정 위치 기준으로 좌표 검출",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image_path\": \"KakaoTalk_20241115_175939274.jpg\",\r\n    \"target_point\": [\r\n                1642,\r\n                1379\r\n            ],\r\n    \"search_radius\": 600,\r\n    \"modify_target\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}:8088/grid/grid_crud//initialize_grid_with_clic?Content-Type=application/json",
+							"host": [
+								"{{base_url}}"
+							],
+							"port": "8088",
+							"path": [
+								"grid",
+								"grid_crud",
+								"",
+								"initialize_grid_with_clic"
+							],
+							"query": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "192.168.2.13"
+		}
+	]
+}

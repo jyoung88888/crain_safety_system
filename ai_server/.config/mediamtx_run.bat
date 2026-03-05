@@ -1,0 +1,1 @@
+wsl.exe  /mnt/c/projects/trmps_sever/ai_server/mediamtx

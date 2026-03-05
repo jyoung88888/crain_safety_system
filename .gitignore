@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+
+# Other
+/ai_server/rtsp_service/img
+/ai_server/img
+ai_server/decoded_image.jpg
+ai_server/mediamtx/mediamtx.yml
+/ai_server/result
+.gemini/settings.json
+ai_server/worker_detected_images/
+ai_server/person_detected_images/
+ai_server/rtsp_service/rtsp_ai_trmp/

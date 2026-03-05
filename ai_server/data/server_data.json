@@ -1,0 +1,20 @@
+{
+    "1": {
+        "mediamtx_port": "8889",
+        "restapi_port": "8088",
+        "server_ip": "192.168.2.3",
+        "server_name": "cctv_ser01"
+    },
+    "2": {
+        "server_name": "cctv_ser02",
+        "server_ip": "localhost",
+        "restapi_port": "8081",
+        "mediamtx_port": "8889"
+    },
+    "3": {
+        "server_name": "cctv_ser03",
+        "server_ip": "localhost",
+        "restapi_port": "8082",
+        "mediamtx_port": "8889"
+    }
+}

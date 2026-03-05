@@ -1,0 +1,51 @@
+{
+    "1": {
+        "rtsp_add": "rtsp://admin:AAaa1122@dev.i-gns.co.kr:45101/trackID=1",
+        "out_path": "cctv001",
+        "cctv_name": "cctv001",
+        "server_id": "1",
+        "pid": ""
+    },
+    "2": {
+        "rtsp_add": "rtsp://admin:AAaa1122@dev.i-gns.co.kr:45102/trackID=1",
+        "out_path": "cctv002",
+        "cctv_name": "cctv002",
+        "server_id": "1",
+        "pid": ""
+    },
+    "3": {
+        "rtsp_add": "rtsp://210.99.70.120:1935/live/cctv003.stream",
+        "out_path": "cctv003",
+        "cctv_name": "cctv003",
+        "server_id": "1",
+        "pid": ""
+    },
+    "4": {
+        "rtsp_add": "rtsp://210.99.70.120:1935/live/cctv004.stream",
+        "out_path": "cctv004",
+        "cctv_name": "cctv004",
+        "server_id": "1",
+        "pid": ""
+    },
+    "5": {
+        "rtsp_add": "rtsp://210.99.70.120:1935/live/cctv005.stream",
+        "out_path": "cctv005",
+        "cctv_name": "cctv005",
+        "server_id": "1",
+        "pid": ""
+    },
+    "6": {
+        "rtsp_add": "rtsp://210.99.70.120:1935/live/cctv006.stream",
+        "out_path": "cctv006",
+        "cctv_name": "cctv006",
+        "server_id": "1",
+        "pid": ""
+    },
+    "7": {
+        "rtsp_add": "rtsp://210.99.70.120:1935/live/cctv007.stream",
+        "out_path": "cctv007",
+        "cctv_name": "cctv007",
+        "server_id": "1",
+        "pid": ""
+    }
+}

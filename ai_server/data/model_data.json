@@ -1,0 +1,10 @@
+{
+    "1": {
+        "model_nm": "Detection",
+        "model_txt": "Detection"
+    },
+    "2": {
+        "model_nm": "Pose",
+        "model_txt": "Pose"
+    }
+}

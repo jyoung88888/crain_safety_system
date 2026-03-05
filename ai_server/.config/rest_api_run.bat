@@ -1,0 +1,1 @@
+wsl.exe python3 /mnt/c/projects/trmps_sever/ai_server/app_Image_collection.py
