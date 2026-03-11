@@ -10,8 +10,10 @@ models/
 # MLflow
 mlflow_runs/
 
-# DVC local storage
+# DVC local storage & cache
 dvc_storage/
+.dvc/cache/
+.dvc/tmp/
 
 # Python
 __pycache__/
@@ -31,6 +33,7 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+nul
 
 # Pretrained weights
 *.pt

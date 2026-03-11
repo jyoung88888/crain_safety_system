@@ -1,6 +1,4 @@
-# dongyang-project
-
-동양산전 안전관리시스템 - Object Detection 연구/학습 파이프라인
+# Object Detection 연구/학습 파이프라인
 
 **PyTorch + Ultralytics (YOLOv11 / RT-DETR) + DVC + MLflow** 기반으로
 데이터셋 버전 관리, 실험 추적, 서비스 연동 가능한 공통 모듈을 제공한다.
@@ -10,7 +8,7 @@
 ## 폴더 구조
 
 ```
-dongyang-project/
+experiment/
 ├── configs/
 │   ├── default.yaml          # YOLOv11 기본 실험 설정
 │   └── exp_rtdetr.yaml       # RT-DETR 실험 설정
