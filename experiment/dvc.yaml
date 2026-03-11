@@ -1,0 +1,40 @@
+# dvc.yaml - DVC 파이프라인
+# ============================================================
+# 실행: dvc repro
+# 단계별 실행: dvc repro prepare / dvc repro train
+# ============================================================
+
+stages:
+  prepare:
+    cmd: python src/dataset.py --config configs/default.yaml
+    deps:
+      - src/dataset.py
+      - configs/default.yaml
+      - data/raw
+      - data/labels
+    outs:
+      - data/splits:
+          cache: true
+    params:
+      - configs/default.yaml:
+          - data.split_ratio
+          - train.seed
+
+  train:
+    cmd: python src/train.py --config configs/default.yaml
+    deps:
+      - src/train.py
+      - src/utils.py
+      - configs/default.yaml
+      - data/splits
+    outs:
+      - models/baseline_yolo11n/weights/best.pt:
+          cache: true
+    params:
+      - configs/default.yaml:
+          - model.architecture
+          - train
+          - augmentation
+    metrics:
+      - models/baseline_yolo11n/results.csv:
+          cache: false

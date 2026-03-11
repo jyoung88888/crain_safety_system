@@ -1,0 +1,45 @@
+# Data (DVC 관리)
+data/raw/
+data/labels/
+data/splits/
+
+# Models (DVC/MLflow 관리)
+models/
+!models/.gitkeep
+
+# MLflow
+mlflow_runs/
+
+# DVC local storage
+dvc_storage/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Pretrained weights
+*.pt
+
+# MLflow DB
+mlflow.db
+
+# Dataset (자동 생성)
+data/dataset.yaml
+
+# YOLO runs (Ultralytics 기본 출력)
+runs/
