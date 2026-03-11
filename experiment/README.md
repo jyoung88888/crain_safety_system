@@ -103,6 +103,63 @@ dvc remote add -d local ./dvc_storage
 
 ---
 
+## 새 서버에서 시작하기 (Quick Start)
+
+### 1. 코드 클론
+
+```bash
+git clone http://git.i-gns.co.kr/iljoo_ai_team/ml-experiment-pipeline.git
+cd ml-experiment-pipeline
+```
+
+### 2. Python 환경 설정
+
+```bash
+python -m venv .venv
+source .venv/bin/activate        # Linux/Mac
+# .venv\Scripts\activate         # Windows
+
+pip install -r requirements.txt
+```
+
+### 3. DVC 데이터셋 다운로드
+
+데이터셋은 DVC로 관리되며, 원격 스토리지(`ssh://XXX.XXX.XXX.XXX`)에 저장되어 있다.
+
+```bash
+# 데이터 다운로드 (raw 이미지 + labels)
+dvc pull
+```
+
+> **참고**: DVC remote 서버에 SSH 접속 권한이 필요하다.
+> 접속이 안 되면 SSH 키를 먼저 등록한다:
+> ```bash
+> ssh-copy-id <user>@XXX.XXX.XXX.XXX
+> ```
+
+DVC remote를 변경해야 하는 경우:
+```bash
+# 현재 remote 확인
+dvc remote list
+
+# 새 remote로 변경
+dvc remote add -d new_remote ssh://<user>@<새서버IP>:<경로>
+dvc pull
+```
+
+### 4. 학습 실행
+
+```bash
+# 데이터 분할 + 학습을 한 번에
+dvc repro
+
+# 또는 단계별 실행
+python src/dataset.py --config configs/default.yaml   # 데이터 분할
+python src/train.py --config configs/default.yaml      # 학습
+```
+
+---
+
 ## 사용 방법
 
 ### Step 1. 데이터 준비
