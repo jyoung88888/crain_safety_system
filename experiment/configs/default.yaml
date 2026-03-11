@@ -16,9 +16,9 @@ model:
   architecture: "yolo11n.pt"        # yolo11n / yolo11s / yolo11m / yolo11l / yolo11x
   num_classes: 3                     # hoist, helmet, person
   class_names:
-    - hoist
-    - helmet
     - person
+    - helmet
+    - hoist
 
 # --- 데이터 ---
 data:

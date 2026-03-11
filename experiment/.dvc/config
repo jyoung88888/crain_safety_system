@@ -1,4 +1,6 @@
 [core]
-    remote = local
+    remote = thub_4090
 ['remote "local"']
     url = ../dvc_storage
+['remote "thub_4090"']
+    url = ssh://thub@192.168.0.31:/mnt/hdd/1/DATASET/dongyang
