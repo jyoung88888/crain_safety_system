@@ -1,4 +1,4 @@
-# Object Detection 연구/학습 파이프라인
+## Object Detection 연구/학습 파이프라인
 
 **PyTorch + Ultralytics (YOLOv11 / RT-DETR) + DVC + MLflow** 기반으로
 데이터셋 버전 관리, 실험 추적, 서비스 연동 가능한 공통 모듈을 제공한다.
